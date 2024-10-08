@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Projetos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Projetos</h1>
+    </header>
+    <main>
+        <button id="backToHome">Voltar</button>
+        <section class="projects">
+            <div class="project" data-title="Tela de login" data-detail="Neste projeto, desenvolvi uma página de login simples utilizando HTML e CSS. A interface foi projetada para ser intuitiva e responsiva, garantindo uma experiência agradável para o usuário.">
+                <h2>Tela de login</h2>
+                <img src="imagem/Captura de Tela (1).png" alt="Projeto 1">
+                <p class="description">Clique para ver mais detalhes.</p>
+            </div>
+            <div class="project" data-title="Gerador de QR Code" data-detail="Neste projeto, desenvolvi um gerador de QR Code que permite aos usuários converter qualquer URL em um código QR de forma rápida e simples. A aplicação utiliza HTML, CSS e JavaScript para criar uma interface interativa e responsiva. Além disso, integrei uma API externa para garantir a geração precisa e eficiente dos códigos QR. A funcionalidade é intuitiva, proporcionando uma experiência agradável e acessível para os usuários.">
+                <h2>Gerador de QR Code</h2>
+                <img src="imagem/Captura de Tela (2).png" alt="Projeto 2">
+                <p class="description">Clique para ver mais detalhes.</p>
+            </div>
+            <div class="project" data-title="Finn" data-detail="Finn, o humano, é um dos personagens que mais marcaram minha infância. Este projeto captura a essência de suas aventuras, utilizando HTML e CSS para homenageá-lo.">
+                <h2>Finn</h2>
+                <img src="imagem/Captura de Tela (4).png" alt="Projeto 3">
+                <p class="description">Clique para ver mais detalhes.</p>
+            </div>
+        </section>
+    </main>
+    
+    
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modal-title"></h2>
+            <p id="modal-detail"></p>
+        </div>
+    </div>
+
+    <script>
+        const projects = document.querySelectorAll('.project');
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalDetail = document.getElementById('modal-detail');
+        const closeModal = document.querySelector('.close');
+
+        projects.forEach(project => {
+            project.addEventListener('click', () => {
+                const title = project.getAttribute('data-title');
+                const detail = project.getAttribute('data-detail');
+
+                modalTitle.textContent = title;
+                modalDetail.textContent = detail;
+
+                modal.classList.add('loading');
+                setTimeout(() => {
+                    modal.classList.remove('loading');
+                    modal.style.display = 'block';
+                }, 300);
+            });
+        });
+
+        closeModal.onclick = function () {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        document.getElementById('backToHome').onclick = function () {
+            window.location.href = 'http://127.0.0.1:5500/portifolio/index.html';
+        }
+    </script>
+</body>
+</html>
